@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    UCSB Physics DiRPi Project - About Us
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero text-center d-flex align-items-center justify-content-center">
+    <div class="container">
+        <div class="text-box">
+            <h1>About UCSB Physics DiRPi Project</h1>
+            <p>Learn more about the team and the vision behind UCSB Physics DiRPi Project.</p>
+        </div>
+    </div>
+</section>
+
+<!-- People Section -->
+<section class="people bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Team</h2>
+        <div class="scrolling-wrapper row">
+            {% for person in people %}
+            <div class="col-md-4">
+                <div class="card">
+                    {% if person.image %}
+                    <img src="{{ person.image.url }}" class="card-img-top custom-img-container" alt="{{ person.name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ person.name }}</h5>
+                        <p class="card-text"><a href="mailto:{{ person.contact_info }}">{{ person.contact_info }}</a></p>
+                        <p class="card-text">{{ person.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Vision Section -->
+<section class="vision py-5">
+  <div class="container" style="display: block;">
+      <h2 class="text-left mb-5">Our Vision</h2>
+      <p class="vision-text">
+        Dive into the realm of particle accelerators and x-ray diagnostics! We're pioneering a project aimed at developing a sophisticated detector system to monitor and diagnose accelerator operations in real-time. This isn't just any system; it's a symphony of analog electronics, digital logic, web-based databases, and real-time plotting programs.
+      </p>
+      
+      <h2 class="text-left mb-5">The Project</h2>
+      <p class="vision-text">
+        Particle accelerators, like the renowned LHC, LANSCE, LCLS, and UCSB's FEL, have transformed our understanding of the universe. Our mission? To make them even better. We're tapping into the power of x-rays to provide essential diagnostics. From beam particles not properly contained, to electric fields producing x-rays, our system can monitor it all.
+      </p>
+  
+      <h2 class="text-left mb-5">The Technology</h2>
+      <p class="vision-text">
+        At the core of our project is the LYSO scintillator, paired with a Silicon Photomultiplier (SiPM). When an x-ray strikes, the crystal lights up, and this light is detected to measure the x-ray's energy. This might sound complex, but the beauty lies in the details. LYSO even self-calibrates, thanks to its Lutetium content.
+      </p>
+  
+      <h2 class="text-left mb-5">The Opportunity</h2>
+      <p class="vision-text">
+        And here's the most exciting part: YOU can be a part of this journey! We're offering undergraduates a chance to delve deep into this project. Whether you're into hands-on instrumentation, software development, or data analysis, there's an opportunity waiting for you. Enroll in the Phys99 or Phys199 courses and embark on this scientific adventure.
+      </p>
+
+      <h2 class="text-left mb-5">Join Us</h2>
+      <p class="vision-text">
+        As a part of our team, you'll get to assemble detector components, develop software for Raspberry Pi, enhance web-based tools, and much more. We believe in collaborative learning, which is why we've structured weekly meetings for knowledge exchange, presentations, and progress tracking. And it's not all work; you'll also get to experience some cool physics demonstrations along the way.
+      </p>
+
+      <h2 class="text-left mb-5">Contact</h2>
+      <p class="contact-text">
+        Ready to contribute to the future of accelerator diagnostics? Or just have a burning question? Drop us an email at <a href="mailto:davidstuart@ucsb.edu">davidstuart@ucsb.edu</a>. We're eager to welcome you aboard and make learning exhilarating!
+      </p>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}
+UCSB Accelerator Diagnostics Project
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero text-center d-flex align-items-center justify-content-center">
+  <div class="container">
+    <div class="text-box">
+      <h1>Welcome to UCSB Accelerator Diagnostics Project</h1>
+      <p>Dive into the cutting-edge world of particle accelerators and x-ray diagnostics.</p>
+      <a href="{% url 'register' %}" class="btn btn-primary">Join Us Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- Project Components Snippet -->
+<section class="project-components py-5 bg-light">
+
+    <div class="container">
+      <h2 class="text-center mb-5">Project Components</h2>
+    </div>
+    <div class="container">
+      <div class="row">
+          
+          <!-- Detector System Card -->
+          <div class="col-md-4 mb-4">
+            <div class="card component-card">
+              <div class="card-header component-card-header text-center">
+                <h5>Detector System</h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text">Our state-of-the-art detector system is designed to monitor accelerator operations in real-time, ensuring the smooth functioning of advanced scientific equipment.</p>
+              </div>
+            </div>
+          </div>
+    
+          <!-- X-Ray Diagnostics Card -->
+          <div class="col-md-4 mb-4">
+            <div class="card component-card">
+              <div class="card-header component-card-header text-center">
+                <h5>X-Ray Diagnostics</h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text">Harnessing the power of x-rays, we provide essential diagnostics for beam particles and electric fields, offering a comprehensive insight into accelerator operations.</p>
+              </div>
+            </div>
+          </div>
+    
+          <!-- LYSO Scintillator Card -->
+          <div class="col-md-4 mb-4">
+            <div class="card component-card">
+              <div class="card-header component-card-header text-center">
+                <h5>LYSO Scintillator</h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text">Utilizing LYSO scintillators paired with Silicon Photomultipliers, we detect minute energies. LYSO even self-calibrates, enhancing the precision of our diagnostics.</p>
+              </div>
+            </div>
+          </div>
+    
+      </div>
+    </div>
+</section>
+    
+
+{% endblock %}

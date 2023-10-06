@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register - UCSB Physics DiRPi
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 register-container">
+    <div class="col-md-8 offset-md-2 registration-form">
+        <h1 class="text-center">Register</h1>
+        <form method="post">
+            {% csrf_token %}
+            
+            <!-- Basic Info -->
+            <div class="form-section">
+                <h3>Basic Information</h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
+                        <input type="text" class="form-control custom-input" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                        <input type="email" class="form-control custom-input" id="{{ form.email.id_for_label }}" name="{{ form.email.name }}" required>
+                    </div>
+                </div>
+
+                <!-- Password Info -->
+                <div class="form-section">
+                    <h3>Password Information</h3>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.password1.id_for_label }}" class="form-label">Password</label>
+                            <input onfocus="this.type='text'" onblur="this.type='password'" class="form-control custom-input" id="{{ form.password1.id_for_label }}" name="{{ form.password1.name }}" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.password2.id_for_label }}" class="form-label">Confirm Password</label>
+                            <input onfocus="this.type='text'" onblur="this.type='password'" class="form-control custom-input" id="{{ form.password2.id_for_label }}" name="{{ form.password2.name }}" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ form.first_name.id_for_label }}" class="form-label">First Name</label>
+                        <input type="text" class="form-control custom-input" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.name }}" placeholder="Optional">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ form.last_name.id_for_label }}" class="form-label">Last Name</label>
+                        <input type="text" class="form-control custom-input" id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.name }}" placeholder="Optional">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="form-section">
+                <h3>UCSB Information</h3>
+
+                <!-- Role -->
+                <div class="mb-3">
+                    <label for="{{ form.role.id_for_label }}" class="form-label">Role</label>
+                    <select class="form-control custom-input" id="{{ form.role.id_for_label }}" name="{{ form.role.name }}">
+                        {% for value, display in form.fields.role.choices %}
+                            <option value="{{ value }}">{{ display }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Contributor status -->
+                <div class="mb-3">
+                    <label for="{{ form.contributor_status.id_for_label }}" class="form-label">Contributor Status</label>
+                    <select class="form-control custom-input" id="{{ form.contributor_status.id_for_label }}" name="{{ form.contributor_status.name }}">
+                        {% for value, display in form.fields.contributor_status.choices %}
+                            <option value="{{ value }}">{{ display }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+            <!-- Submit -->
+            <div class="form-section">
+                <button type="submit" class="btn btn-primary btn-block custom-btn">Register</button>
+            </div>
+        </form>
+
+        {% if error %}
+        <div class="alert alert-danger mt-3" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

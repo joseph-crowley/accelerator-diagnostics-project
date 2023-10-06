@@ -1,0 +1,307 @@
+/* Variables */
+:root {
+  --primary-font-size: 1.2em;
+  --large-font-size: 2.5em;
+  --common-margin-bottom: 16px;
+  --common-padding: 40px;
+  --common-margin: 15px;
+  --common-radius: 8px;
+}
+
+/* Common Utilities */
+.container, .login-container, .register-container {
+  display: flex;
+  justify-content: center;
+}
+
+.container, .text-box {
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-box, .col-md-6 {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: var(--common-padding);
+  border-radius: var(--common-radius);
+  width: 80%;
+  margin: 0 auto;
+}
+
+.btn, .form-control {
+  border-radius: 0.25rem;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+/* Typography */
+h1 {
+  font-size: var(--large-font-size);
+  margin-bottom: var(--common-margin-bottom);
+}
+
+p, .footer-section p {
+  font-size: var(--primary-font-size);
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.btn {
+  font-size: 1.1em;
+  padding: 10px 30px;
+}
+
+/* Hero Section */
+.hero {
+  padding: 100px 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/ucsb_from_above.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+}
+
+/* Cards and Grid */
+.card, .people .card {
+  margin: var(--common-margin);
+}
+
+.custom-img-container {
+  width: 100%;  /* This ensures the image takes the full width of its container */
+  height: 250px;  /* Set to whatever height you desire */
+  object-fit: cover;  /* This will make sure the image covers the entire container */
+  object-position: center;  /* This will center the image within the container */
+}
+
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+/* Footer */
+.footer-section {
+  background-color: #333;
+  padding: 10px 0;  
+  color: white;
+}
+
+.footer-section h5, .footer-section p {
+  margin-bottom: 0;
+}
+
+.footer-section a.text-white {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-section a.text-white:hover {
+  text-decoration: underline;
+}
+
+.footer-section .row.justify-content-between {
+  justify-content: space-between;
+}
+
+/* Sections */
+.intro-section, .demo-grid {
+  padding: 100px 0;
+}
+
+/* Form Layout */
+.col-md-6 {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: var(--common-radius);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.registration-form {
+  background: #f9f9f9;
+  padding: 40px;
+  border-radius: var(--common-radius);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.form-section {
+  margin-bottom: 30px;
+}
+
+.form-section h3 {
+  margin-bottom: 20px;
+}
+
+/* about page - vision statement */
+.vision-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align to the left */
+}
+
+.vision-text,
+.vision-block h2 {
+  width: 60%; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* about page - people */
+.card-text {
+  width: 100%;
+  max-width: 90ch;
+  white-space: pre-wrap;
+  overflow-y: auto;
+}
+
+.card-title {
+  font-size: 1.5em;
+}
+
+/* New styles for card to control size */
+.people .col-md-4 {
+  max-width: 45%; /* Adjust this as needed */
+  flex: 0 0 auto; /* Disabling stretching, keeping the size */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Limiting the content inside the card */
+.card-body {
+  max-height: calc(100vh - 200px); /* 100vh is full screen height, 200px is an arbitrary value you could adjust */
+  overflow-y: auto; /* Scrollable if the content overflows */
+  padding: 15px;  /* Padding for breathing room */
+}
+
+/* Make sure text is limited in width for readability */
+.card-text {
+  max-width: 100%; /* Use the full width */
+  overflow-wrap: break-word; /* Breaks the word in case of overflow */
+  white-space: pre-wrap; /* Allows text to wrap and respects new lines */
+}
+
+.people .card {
+  height: 100%; /* Make the card take full height */
+  display: flex; /* Added so the child items can be flex-items */
+  flex-direction: column; /* Arranged children vertically */
+}
+
+.people .card-body {
+  flex: 1; /* Added so that this section takes up all available space */
+}
+
+/* Styles for events page */
+/* General styles */
+.container {
+  max-width: 1200px;
+}
+
+h1, h2, h3, h5 {
+  margin-bottom: 20px;
+}
+
+p, li {
+  margin-bottom: 30px;
+}
+
+.event-info > div {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.fa {
+  margin-right: 8px;
+}
+
+/* Project Components Section */
+.project-components {
+  padding: 80px 0;
+  background-color: #f9f9f9;
+}
+
+.component-card {
+  margin: var(--common-margin);
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: var(--common-radius);
+}
+
+.component-card-header {
+  background-color: #007BFF; /* Using a default primary color for headers, but you can change this */
+  color: white;
+  padding: 10px;
+  font-size: var(--primary-font-size);
+  border-top-left-radius: var(--common-radius);
+  border-top-right-radius: var(--common-radius);
+}
+
+.component-card .card-body {
+  padding: 15px;
+}
+
+.component-card p {
+  margin-bottom: 0; /* Removing margin to fit the content neatly */
+}
+
+.component-card:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  transform: translateY(-5px); /* Slight upward lift on hover */
+  transition: all 0.3s ease-out;
+}
+
+/* Vision, Join Us, and Contact Sections */
+.vision, .join, .contact {
+  padding: var(--common-padding) 0;
+}
+
+.vision-text, .join-text, .contact-text {
+  margin-bottom: var(--common-margin-bottom);
+  font-size: var(--primary-font-size);
+  line-height: 1.5;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* People Section */
+.people {
+  background-color: #f9f9f9; /* Giving it a slightly different background for distinction */
+}
+
+.people h2 {
+  margin-bottom: var(--common-margin-bottom);
+}
+
+.people .col-md-4 {
+  margin-bottom: var(--common-margin);
+}
+
+/* Cards */
+.card {
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-body h5 {
+  margin-bottom: var(--common-margin-bottom);
+}
+
+/* Links */
+a {
+  color: #007BFF; /* Using a default primary color for links, but you can change this */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0056b3; /* Darker shade for hover effect */
+}
