@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+  UCSB Physics DiRPi Project - New Document
+{% endblock %}
+
+{% block content %}
+  <!-- Documentation Form Section -->
+  <section class="documentation-common py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <h1 class="mb-4 text-center">New Document</h1>
+          <form method="post" class="g-3">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="mb-3">
+              {{ form.title.label_tag }}
+              {{ form.title }}
+              {{ form.title.errors }}
+            </div>
+            <div class="mb-3">
+              {{ form.content.label_tag }}
+              {{ form.content }}
+              {{ form.content.errors }}
+            </div>
+            <div class="mb-3">
+              {{ form.type.label_tag }}
+              {{ form.type }}
+              {{ form.type.errors }}
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+              <a href="{% url 'documentation_list' %}" class="btn btn-secondary">Cancel</a>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

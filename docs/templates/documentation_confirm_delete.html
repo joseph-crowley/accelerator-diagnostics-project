@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  UCSB Physics DiRPi Project - Delete Documentation
+{% endblock %}
+
+{% block content %}
+  <section class="documentation-delete py-5">
+    <div class="container" style="display: block;">
+      <h1>Are you sure you want to delete this documentation?</h1>
+      <p>{{ object.title }}</p>
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="{% url 'documentation_detail' object.pk %}" class="btn btn-secondary">Cancel</a>
+      </form>
+    </div>
+  </section>
+{% endblock %}
