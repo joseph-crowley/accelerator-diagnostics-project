@@ -20,6 +20,7 @@ find . -type d -name "__pycache__" -exec rm -r {} +
 
 # Create the new database
 python manage.py makemigrations core
+python manage.py makemigrations docs 
 
 python manage.py migrate
 

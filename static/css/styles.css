@@ -305,3 +305,78 @@ a {
 a:hover {
   color: #0056b3; /* Darker shade for hover effect */
 }
+
+/* Styles for docs app */
+.documentation-common {
+  background-color: #f9f9f9;
+  padding: 3em 0;
+}
+
+/* Header styles */
+.doc-header {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+/* Content styles */
+.doc-content {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styles */
+.form-group label {
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  border-radius: 8px;
+  padding: 12px;
+}
+
+/* Button styles */
+.btn {
+  padding: 10px 20px;
+}
+
+/* Search and Filter Bar */
+.search-and-filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-bar input.form-control,
+.filter-bar select.form-select {
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.filter-bar {
+  width: 30%;
+}
+
+/* List group styles */
+.list-group-item {
+  border-radius: 10px;
+  margin: 5px 0;
+}
+
+.list-group-item.active {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.list-group-item-action {
+  transition: all 0.3s;
+}
+
+.list-group-item-action:hover,
+.list-group-item:hover {
+  background-color: #f1f1f1;
+}

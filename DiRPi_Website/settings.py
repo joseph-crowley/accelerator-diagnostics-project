@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # DiRPi_Website Apps
     'core',
+    'docs',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'), 
-            os.path.join(BASE_DIR, 'core/templates')
+            os.path.join(BASE_DIR, 'core/templates'),
+            os.path.join(BASE_DIR, 'docs/templates'),
             ],  # Add your project's templates directory here
         'APP_DIRS': True,
         'OPTIONS': {
@@ -136,3 +138,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Login Redirect
+LOGIN_URL = '/login/'  

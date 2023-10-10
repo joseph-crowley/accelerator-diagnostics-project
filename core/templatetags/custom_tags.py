@@ -8,7 +8,12 @@ register = template.Library()
 # User Role Label
 @register.filter
 def user_role_label(CustomUser):
-    return user.role
+    if CustomUser.role == 'admin':
+        return 'Admin'
+    elif CustomUser.role == 'member':
+        return 'Member'
+    else:
+        return 'Unknown'
 
 # Format Date as Month Day, Year
 @register.filter

@@ -23,9 +23,11 @@
     Then run:
 
     ```bash
-    python manage.py makemigrations
+    python manage.py makemigrations core
     python manage.py migrate
     ```
+
+    NOTE: The setup.sh script needs to have `python manage.py makemigrations core` and `python manage.py migrate` run in order to work properly. If you are using a different app name, you will need to change the setup.sh script accordingly.
 
 3. **Admin**: Make sure you have registered your models in `core/admin.py`.
 
