@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    UCSB Physics DiRPi Project - All Workflows
+{% endblock %}
+
+{% block content %}
+<!-- Workflow List Section -->
+<section class="workflow-list text-center py-5">
+    <div class="container" style="display: block;">
+        <h2 class="text-center mb-5">All Workflows</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="{% url 'workflow_create' %}" class="btn btn-primary btn-block">Create New Workflow</a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Workflow Name</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for workflow in workflows %}
+                    <tr>
+                        <td>{{ workflow.name }}</td>
+                        <td>
+                            <a href="{% url 'workflow_detail' workflow.pk %}" class="btn btn-primary">View</a>
+                            <a href="{% url 'workflow_edit' workflow.pk %}" class="btn btn-warning">Edit</a>
+                            <a href="{% url 'workflow_delete' workflow.pk %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

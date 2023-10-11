@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+  UCSB Physics DiRPi Project - New Program
+{% endblock %}
+
+{% block content %}
+  <!-- Program Form Section -->
+  <section class="documentation-common py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <h1 class="mb-4 text-center">Create Program</h1>
+          <form method="post" enctype="multipart/form-data" class="g-3">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="mb-3">
+              {{ form.name.label_tag }}
+              {{ form.name }}
+              {{ form.name.errors }}
+            </div>
+            <div class="mb-3">
+              {{ form.description.label_tag }}
+              {{ form.description }}
+              {{ form.description.errors }}
+            </div>
+            <div class="mb-3">
+              {{ form.language.label_tag }}
+              {{ form.language }}
+              {{ form.language.errors }}
+            </div>
+            <div class="mb-3">
+              {{ form.script.label_tag }}
+              {{ form.script }}
+              {{ form.script.errors }}
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+              <a href="{% url 'program_list' %}" class="btn btn-secondary">Cancel</a>
+              <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

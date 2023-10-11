@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  UCSB Physics DiRPi Project - Workflow Detail
+{% endblock %}
+
+{% block content %}
+  <!-- Workflow Detail Section -->
+  <section class="workflow-detail py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <h1 class="mb-4 text-center">Workflow Detail</h1>
+
+          <h3>Workflow Details:</h3>
+          <ul>
+            <li><strong>Name:</strong> {{ workflow.name }}</li>
+            <li><strong>Description:</strong> {{ workflow.description }}</li>
+            <li><strong>Created By:</strong> {{ workflow.created_by }}</li>
+            <li><strong>Created At:</strong> {{ workflow.created_at|date:"d M Y, H:i:s" }}</li>
+          </ul>
+
+          <h3>Associated Programs:</h3>
+          <ul>
+            {% for program in workflow.programs.all %}
+                <li>{{ program.name }}</li>
+            {% endfor %}
+          </ul>
+
+          <div class="d-flex justify-content-between mt-4">
+            <a href="{% url 'workflow_list' %}" class="btn btn-secondary">Back to Workflows</a>
+            <a href="{% url 'workflow_edit' workflow.workflow_id %}" class="btn btn-primary">Edit Workflow</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

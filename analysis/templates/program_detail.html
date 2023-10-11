@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  UCSB Physics DiRPi Project - Program Detail
+{% endblock %}
+
+{% block content %}
+  <!-- Program Detail Section -->
+  <section class="program-detail py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <h1 class="mb-4 text-center">Program Detail</h1>
+
+          <h3>Program Details:</h3>
+          <ul>
+            <li><strong>Name:</strong> {{ program.name }}</li>
+            <li><strong>Description:</strong> {{ program.description }}</li>
+            <li><strong>Language:</strong> {{ program.get_language_display }}</li>
+            <li><strong>Created By:</strong> {{ program.created_by }}</li>
+            <li><strong>Created At:</strong> {{ program.created_at|date:"d M Y, H:i:s" }}</li>
+          </ul>
+
+          <h3>Script Content:</h3>
+          <div style="text-align: left; white-space: pre-wrap; word-wrap: break-word; max-width: 100%; margin: auto; border: 1px solid #ddd; padding: 20px; background-color: #f9f9f9;">
+          {% autoescape off %} 
+            {{ script_content }}
+          {% endautoescape %}
+          </div>
+
+          <div class="d-flex justify-content-between mt-4">
+            <a href="{% url 'program_list' %}" class="btn btn-secondary">Back to Programs</a>
+            <a href="{% url 'program_edit' program.program_id %}" class="btn btn-primary">Edit Program</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

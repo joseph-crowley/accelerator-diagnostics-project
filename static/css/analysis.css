@@ -1,0 +1,48 @@
+/* Container */
+.analysis-common {
+  background-color: #f9f9f9;
+  padding: 3em 0;
+}
+
+.analysis-container {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Core Functionality */
+.core-functionality {
+    margin-bottom: 3rem;
+}
+
+.functionality-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.functionality-item {
+    margin-bottom: 1.5rem;
+}
+
+.functionality-links a {
+    margin-right: 1rem;
+}
+
+/* How to Use */
+.how-to-use {
+    margin-bottom: 3rem;
+}
+
+/* Get Started */
+.get-started {
+    text-align: center;
+}
+
+.cta-button {
+    background-color: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+}

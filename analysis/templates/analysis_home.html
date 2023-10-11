@@ -1,56 +1,63 @@
 {% extends 'base.html' %}
 
-{% block title %}Analysis Home{% endblock %}
+{% load static %}
+
+{% block title %}
+  UCSB Physics DiRPi Project - Analysis Home
+{% endblock %}
 
 {% block content %}
-    <div class="container mt-5" style="display: block;">
-        <h1 class="display-4 mb-4">Welcome to the Analysis App</h1>
+  <!-- Analysis Home Section -->
+  <section class="analysis-common">
+    <div class="container" style="display: block;">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Analysis</h1>
+      </div>
 
-        <section class="mb-5">
-            <h2>Core Functionalities</h2>
-            <ul>
-                <li>
-                    <strong>Run Management:</strong> 
-                    Initiate, monitor, and terminate data acquisition runs with ease.
-                    <a href="{% url 'run_list' %}">View Runs</a> | 
-                    <a href="{% url 'run_create' %}">Start a New Run</a>
-                </li>
-                <li>
-                    <strong>Data Analysis:</strong> 
-                    Apply filters, anomaly detection, and custom scripts to your data.
-                    <a href="{% url 'data_record_list' %}">View Data Records</a>
-                </li>
-                <li>
-                    <strong>Visualization:</strong> 
-                    Experience data through interactive graphs, heatmaps, and more.
-                    <!-- Add link if there's a URL pattern for visualization -->
-                </li>
-            </ul>
-        </section>
+      <p class="mb-4">Below are the core functionalities and guidance on how to use them.</p>
 
-        <section class="mb-5">
-            <h2>How to Use</h2>
-            <p>
-                Navigate to <strong><a href="{% url 'run_list' %}">Run Management</a></strong> to start a new data acquisition run. Once a run is active, 
-                you can monitor it in real-time and make necessary adjustments.
-            </p>
-            <p>
-                Use the <strong><a href="{% url 'data_record_list' %}">Data Analysis</a></strong> tools to deep-dive into your data. You can apply pre-defined or custom 
-                filters to get the insights you need.
-            </p>
-            <p>
-                The <strong>Visualization</strong> tools allow you to see your data in various formats. Interact with the data to 
-                gain deeper insights.
-                <!-- Add link if there's a URL pattern for visualization -->
-            </p>
-        </section>
-        
-        <section class="mb-5">
-            <h2>Get Started</h2>
-            <p>
-                Ready to dive in? Click the button below to start your first data acquisition run.
-            </p>
-            <a href="{% url 'run_create' %}" class="btn btn-primary">Start a New Run</a>
-        </section>
+      <!-- Core Functionalities -->
+      <div class="functionality-section mb-4">
+        <h2>Core Functionalities</h2>
+        <ul class="list-group">
+          {% for func in functionalities %}
+            <li class="list-group-item">
+              <strong>{{ func.title }}:</strong> {{ func.description }}
+              <div class="functionality-links">
+                {% for link in func.links %}
+                  <a href="{% url link.url %}">{{ link.text }}</a>{% if not forloop.last %} | {% endif %}
+                {% endfor %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- How to Use -->
+      <div class="how-to-section mb-4">
+        <h2>How to Use</h2>
+        <div class="list-group">
+          {% for how_to in how_to_use %}
+            <div class="list-group-item">
+              <strong>{{ how_to.title }}:</strong> {{ how_to.description }}
+              {% if how_to.url %}
+                <a href="{% url how_to.url %}">Learn More</a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Get Started -->
+      <div class="get-started-section mb-4">
+        <h2>Get Started</h2>
+        <p>Ready to dive in? Click the button below to start your first data acquisition run.</p>
+        <a href="{% url 'run_create' %}" class="btn btn-primary">Start a New Run</a>
+      </div>
     </div>
+  </section>
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/analysis.css' %}">
 {% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    UCSB Physics DiRPi Project - Program List
+{% endblock %}
+
+{% block content %}
+<!-- Program List Section -->
+<section class="program-list text-center py-5">
+    <div class="container" style="display: block;">
+        <h2 class="text-center mb-5">Program List</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="{% url 'program_upload' %}" class="btn btn-primary btn-block">Create New Program</a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Program Name</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for program in programs %}
+                    <tr>
+                        <td>{{ program.name }}</td>
+                        <td>
+                            <a href="{% url 'program_detail' program.program_id %}" class="btn btn-info">View</a>
+                            <a href="{% url 'program_edit' program.program_id %}" class="btn btn-warning">Edit</a>
+                            <a href="{% url 'program_delete' program.program_id %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}
