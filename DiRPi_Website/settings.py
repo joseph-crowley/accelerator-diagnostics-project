@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # DiRPi_Website Apps
     'core',
     'docs',
+    'analysis',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'templates'), 
             os.path.join(BASE_DIR, 'core/templates'),
             os.path.join(BASE_DIR, 'docs/templates'),
+            os.path.join(BASE_DIR, 'analysis/templates'),
             ],  # Add your project's templates directory here
         'APP_DIRS': True,
         'OPTIONS': {

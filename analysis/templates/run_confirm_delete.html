@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    UCSB Physics DiRPi Project - Confirm Run Deletion
+{% endblock %}
+
+{% block content %}
+<!-- Run Deletion Confirmation Section -->
+<section class="run-delete text-center py-5">
+    <div class="container" style="display: block;">
+        <h2 class="text-center mb-5">Are you sure you want to delete this run?</h2>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            <a href="{% url 'run_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</section>
+{% endblock %}

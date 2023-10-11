@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    UCSB Physics DiRPi Project - Run List
+{% endblock %}
+
+{% block content %}
+<!-- Run List Section -->
+<section class="run-list text-center py-5">
+    <div class="container" style="display: block;">
+        <h2 class="text-center mb-5">Run List</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="{% url 'run_create' %}" class="btn btn-primary btn-block">Create New Run</a>
+            </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Run ID</th>
+                        <th scope="col">Metadata</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for run in runs %}
+                    <tr>
+                        <td>{{ run.run_id }}</td>
+                        <td>{{ run.metadata }}</td>
+                        <td>{{ run.status }}</td>
+                        <td>
+                            {% if run.run_id %}
+                                <a href="{% url 'run_detail' run.run_id %}" class="btn btn-info">Details</a>
+                                <a href="{% url 'run_update' run.run_id %}" class="btn btn-warning">Edit</a>
+                                <a href="{% url 'run_delete' run.run_id %}" class="btn btn-danger">Delete</a>
+                            {% else %}
+                                <!-- Handle the case where run.id is None -->
+                                <span class="text-muted">No Actions Available</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

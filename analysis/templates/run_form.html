@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+  UCSB Physics DiRPi Project - Run Form
+{% endblock %}
+
+{% block content %}
+  <!-- Run Form Section -->
+  <section class="run-common py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <h1 class="mb-4 text-center">New Run</h1>
+          <form method="post" class="g-3">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="mb-3">
+              {{ form.run_id.label_tag }}
+              {{ form.run_id }}
+              {{ form.run_id.errors }}
+            </div>
+            <div class="mb-3">
+              {{ form.metadata.label_tag }}
+              {{ form.metadata }}
+              {{ form.metadata.errors }}
+            </div>
+            <div class="mb-3">
+              {{ form.configurations.label_tag }}
+              {{ form.configurations }}
+              {{ form.configurations.errors }}
+            </div>
+            <div class="mb-3">
+              {{ form.associated_group.label_tag }}
+              {{ form.associated_group }}
+              {{ form.associated_group.errors }}
+            </div>
+            <div class="mb-3">
+              {{ form.tags.label_tag }}
+              {{ form.tags }}
+              {{ form.tags.errors }}
+            </div>
+            <div class="mb-3">
+              {{ form.status.label_tag }}
+              {{ form.status }}
+              {{ form.status.errors }}
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+              <a href="{% url 'run_list' %}" class="btn btn-secondary">Cancel</a>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -380,3 +380,8 @@ a:hover {
 .list-group-item:hover {
   background-color: #f1f1f1;
 }
+
+/* Custom button styling */
+.custom-btn {
+  height: calc(1.5em + .75rem + 2px); 
+}

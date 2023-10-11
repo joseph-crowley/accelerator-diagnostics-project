@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    UCSB Physics DiRPi Project - Data Record Detail
+{% endblock %}
+
+{% block content %}
+<!-- Data Record Detail Section -->
+<section class="data-record-detail text-center py-5">
+    <div class="container" style="display: block;">
+        <h2 class="text-center mb-5">Data Record Details</h2>
+        <dl class="row">
+            <dt class="col-sm-3">Timestamp:</dt>
+            <dd class="col-sm-9">{{ record.timestamp }}</dd>
+
+            <dt class="col-sm-3">Data Values:</dt>
+            <dd class="col-sm-9">{{ record.data_values }}</dd>
+
+            <dt class="col-sm-3">Anomalies:</dt>
+            <dd class="col-sm-9">{{ record.anomalies|default:"None" }}</dd>
+            
+            <!-- Add more fields here -->
+        </dl>
+    </div>
+</section>
+{% endblock %}

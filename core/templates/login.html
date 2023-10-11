@@ -18,6 +18,9 @@ Login - UCSB Physics DiRPi
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
+            {% if next %}
+            <input type="hidden" name="next" value="{{ next }}">
+            {% endif %}
             <button type="submit" class="btn btn-primary btn-block">Login</button>
         </form>
         {% if error %}

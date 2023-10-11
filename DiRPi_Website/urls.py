@@ -25,5 +25,5 @@ urlpatterns = [
     # path to other apps 
     #path('example/', include('example.urls')),
     path('docs/', include('docs.urls')),
-
+    path('analysis/', include('analysis.urls')),
 ]

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    UCSB Physics DiRPi Project - Run Details
+{% endblock %}
+
+{% block content %}
+<!-- Run Detail Section -->
+<section class="run-detail text-center py-5">
+    <div class="container" style="display: block;">
+        <h2 class="text-center mb-5">Run Details for {{ run.run_id }}</h2>
+        <dl class="row">
+            <dt class="col-sm-3">Metadata:</dt>
+            <dd class="col-sm-9">{{ run.metadata }}</dd>
+
+            <dt class="col-sm-3">Status:</dt>
+            <dd class="col-sm-9">{{ run.status }}</dd>
+            
+            <dt class="col-sm-3">Actions:</dt> 
+            <dd class="col-sm-9">
+                <a href="{% url 'run_update' run.run_id %}" class="btn btn-warning">Edit</a>
+                <a href="{% url 'run_delete' run.run_id %}" class="btn btn-danger">Delete</a>
+            </dd>
+        </dl>
+    </div>
+</section>
+{% endblock %}

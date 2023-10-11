@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+{% endblock %}
+
+{% block title %}
+    UCSB Physics DiRPi Project - Data Analysis
+{% endblock %}
+
+{% block content %}
+<!-- Data Analysis Section -->
+<section class="data-analysis text-center py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Data Analysis</h2>
+    </div>
+    <div class="container">
+        <form method="get" id="filter-form" class="mb-5">
+            <div class="row align-items-end">
+                <div class="col-md">
+                    <label for="{{ filter_form.start_date.id_for_label }}">Start Date</label>
+                    {{ filter_form.start_date }}
+                </div>
+                <div class="col-md">
+                    <label for="{{ filter_form.end_date.id_for_label }}">End Date</label>
+                    {{ filter_form.end_date }}
+                </div>
+                <div class="col-md">
+                    <label for="{{ filter_form.tags.id_for_label }}">Tags</label>
+                    {{ filter_form.tags }}
+                </div>
+                <div class="col-md">
+                    <label for="{{ filter_form.status.id_for_label }}">Status</label>
+                    {{ filter_form.status }}
+                </div>
+                <div class="col-md">
+                    <label for="{{ filter_form.run.id_for_label }}">Run</label>
+                    {{ filter_form.run }}
+                </div>
+                <div class="col-md d-flex align-items-center">
+                    <button type="submit" class="btn btn-primary btn-sm form-control filter-btn">Apply Filters</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container">
+        <div class="table-responsive">
+            <table id="data-table" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Timestamp</th>
+                        <th scope="col">Data Values</th>
+                        <th scope="col">Anomalies</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in data_records %}
+                    <tr>
+                        <td>{{ record.timestamp }}</td>
+                        <td>{{ record.data_values }}</td>
+                        <td>{{ record.anomalies|default:"None" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script>
+    // DataTables config
+    $(document).ready(function() {
+        $('#data-table').DataTable();
+    });
+
+    // AJAX for Filters
+    $("#filter-form").submit(function(e) {
+        e.preventDefault();
+        // Perform AJAX request to apply filters
+    });
+</script>
+{% endblock %}

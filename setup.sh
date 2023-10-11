@@ -21,6 +21,7 @@ find . -type d -name "__pycache__" -exec rm -r {} +
 # Create the new database
 python manage.py makemigrations core
 python manage.py makemigrations docs 
+python manage.py makemigrations analysis 
 
 python manage.py migrate
 
@@ -32,6 +33,10 @@ python manage.py create_custom_superuser
 
 # Add initial team members
 python manage.py add_team_members
+
+# add initial runs and data_records
+python manage.py add_runs
+python manage.py add_data_records
 
 # run the server
 python manage.py runserver 0.0.0.0:8005
