@@ -9,7 +9,7 @@ from analysis.forms import RunForm
 @method_decorator(login_required, name='dispatch')
 class RunListView(View):
     def get(self, request):
-        runs = Run.objects.all().order_by('-metadata')
+        runs = Run.objects.all().order_by('-run_id')
         return render(request, 'run_list.html', {'runs': runs})
 
 @method_decorator(login_required, name='dispatch')

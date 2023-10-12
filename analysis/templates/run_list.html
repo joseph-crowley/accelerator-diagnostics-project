@@ -13,12 +13,14 @@
             <div class="col-md-6">
                 <a href="{% url 'run_create' %}" class="btn btn-primary btn-block">Create New Run</a>
             </div>
+        </div>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Run ID</th>
-                        <th scope="col">Metadata</th>
+                        <th scope="col">Notes</th>
+                        <th scope="col">Configuration</th>
                         <th scope="col">Status</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -27,7 +29,8 @@
                 {% for run in runs %}
                     <tr>
                         <td>{{ run.run_id }}</td>
-                        <td>{{ run.metadata }}</td>
+                        <td>{{ run.notes }}</td>
+                        <td>{{ run.configuration.name }}</td>
                         <td>{{ run.status }}</td>
                         <td>
                             {% if run.run_id %}

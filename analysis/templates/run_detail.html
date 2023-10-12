@@ -8,14 +8,38 @@
 <!-- Run Detail Section -->
 <section class="run-detail text-center py-5">
     <div class="container" style="display: block;">
-        <h2 class="text-center mb-5">Run Details for {{ run.run_id }}</h2>
+        <h2 class="text-center mb-5">Details for Run #{{ run.run_id }}</h2>
         <dl class="row">
-            <dt class="col-sm-3">Metadata:</dt>
-            <dd class="col-sm-9">{{ run.metadata }}</dd>
+            <dt class="col-sm-3">Notes:</dt>
+            <dd class="col-sm-9">{{ run.notes }}</dd>
+
+            <dt class="col-sm-3">Configuration:</dt>
+            <dd class="col-sm-9">{{ run.configuration.name }}</dd>
 
             <dt class="col-sm-3">Status:</dt>
             <dd class="col-sm-9">{{ run.status }}</dd>
-            
+
+            <dt class="col-sm-3">Num of Files:</dt>
+            <dd class="col-sm-9">{{ run.num_files }}</dd>
+
+            <dt class="col-sm-3">Num of Events:</dt>
+            <dd class="col-sm-9">{{ run.num_events }}</dd>
+
+            <dt class="col-sm-3">Start Time:</dt>
+            <dd class="col-sm-9">{{ run.start_time }}</dd>
+
+            <dt class="col-sm-3">End Time:</dt>
+            <dd class="col-sm-9">{{ run.end_time }}</dd>
+
+            <dt class="col-sm-3">Duration:</dt>
+            <dd class="col-sm-9">{{ run.duration }}</dd>
+
+            <dt class="col-sm-3">Created:</dt>
+            <dd class="col-sm-9">{{ run.created }}</dd>
+
+            <dt class="col-sm-3">Last Updated:</dt>
+            <dd class="col-sm-9">{{ run.last_updated }}</dd>
+
             <dt class="col-sm-3">Actions:</dt> 
             <dd class="col-sm-9">
                 <a href="{% url 'run_update' run.run_id %}" class="btn btn-warning">Edit</a>
