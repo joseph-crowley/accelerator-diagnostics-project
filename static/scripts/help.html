@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guide to using online AntHist and AntScatter tools</title>
+  <style>
+    /* Basic Reset */
+    body, h1, h2, p, a {
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Body & Typography */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    
+    h1, h2 {
+      font-family: 'Helvetica', sans-serif;
+    }
+    
+    h1 {
+      font-size: 2em;
+      padding: 1em;
+      text-align: center;
+      background-color: #333;
+      color: #fff;
+    }
+    
+    h2 {
+      margin-top: 1em;
+      font-size: 1.5em;
+      padding-bottom: 0.5em;
+      border-bottom: 2px solid #333;
+    }
+    
+    /* Navigation */
+    nav {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 0.5em;
+    }
+    
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+    
+    /* Sections */
+    section {
+      padding: 1em;
+      margin: 1em;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Code Blocks */
+    pre {
+      background-color: #f9f9f9;
+      padding: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    
+    /* Collapsible */
+    .collapsible {
+      cursor: pointer;
+    }
+    
+    .collapsible-content {
+      display: none;
+    }
+
+    /* Tooltip */
+    .tooltip {
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 200px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%; /* Position the tooltip above the text */
+      left: 50%;
+      margin-left: -100px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Guide to using online AntHist and AntScatter tools</h1>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav id="navbar">
+    <a href="#intro">Introduction</a>
+    <a href="#usage">Usage</a>
+    <a href="#data-formats">Data Formats</a>
+  </nav>
+
+  <!-- Introduction -->
+  <section id="intro">
+    <h2>Introduction</h2>
+    <p>
+      The <a href="http://dstuart.physics.ucsb.edu/cgi-bin/AntHist">AntHist</a> and <a href="http://dstuart.physics.ucsb.edu/cgi-bin/AntScatter">AntScatter</a> web scripts make plots from the ascii-based ntuples containing pulse information produced from DRS4 data.
+    </p>
+  </section>
+
+  <!-- Usage -->
+  <section id="usage">
+    <h2>Usage</h2>
+    <p>Each run is automatically processed once the data files, RunNNNN.dat.gz, are copied into /cms2r0/milliqan/DRS/toprocess/ and plots can be made about 15 minutes later.</p>
+    <img src="Example1.png" width="500px" alt="Usage Example">
+  </section>
+
+  <!-- Data Formats -->
+  <section id="data-formats">
+    <h2>Data Formats</h2>
+
+    <!-- Pulses -->
+    <div class="collapsible"><h3>Pulses</h3></div>
+    <div class="collapsible-content">
+      <pre>
+        evt = Event number
+        tInRun = Time since start of the run, in seconds
+        tBetweenEvents = Time between this event and the previous event, in seconds
+        nPulses = Number of pulses found in the event across all channels
+        nCh1Pulses = Number of pulses found in channel 1 in this event
+        nCh2Pulses = Number of pulses found in channel 2 in this event
+        nCh3Pulses = number of pulses found in channel 3 in this event
+        nCh4Pulses = number of pulses found in channel 4 in this event
+        RMS = the rms noise measured in the channel containing this pulse
+        chan = the channel number for this pulse
+        ipulse = the pulse number within the event for this channel; ipulse=0 is first pulse
+        t = the time of the pulse within the waveform, in ns
+        A = the area of the pulse in nVs
+        V = the height of the pulse in mV
+        width = the width (or duration) of the pulse in ns
+        NPE = the area of the pulse calibrated into NPE (if the calibration is available)
+        keV = the area of the pulse calibrated into keV (if the calibration is available)
+      </pre>
+    </div>
+
+    <!-- keV -->
+    <div class="collapsible"><h3>keV</h3></div>
+    <div class="collapsible-content">
+      <pre>
+        run = Run number
+        evt = Event number
+        keV1 = Area of CH1 pulse calibrated into keV
+        keV2 = Area of CH2 pulse calibrated into keV
+        keV3 = Area of CH3 pulse calibrated into keV
+        keV4 = Area of CH4 pulse calibrated into keV
+        RMS1 = The rms noise measured in channel1
+        RMS2 = The rms noise measured in channel2
+        RMS3 = The rms noise measured in channel3
+        RMS4 = The rms noise measured in channel4
+      </pre>
+    </div>
+
+    <!-- MTD -->
+    <div class="collapsible"><h3>MTD</h3></div>
+    <div class="collapsible-content">
+      <pre>
+        run = The run number
+        t1 = The roughly determined time of the CH1 pulse
+        V1 = The height of the CH1 pulse in mV
+        A1 = The area of the CH1 pulse in nVs
+        fitt1 = The fitted start time of the leading edge of the CH1 pulse
+        fitslope1 = The fitted leading slope (mV/ns) for CH1
+        fitNpoints1 = Number of samples used in leading edge fit for CH1
+        fitchi1 = Chi-squared of leading edge fit for CH1
+        fitprob1 = Chi-squared probability of leading edge fit for CH1
+        halft1 = The time when the CH1 pulse crosses half its max height
+        t2 = the roughly determined time of the CH2 pulse
+        V2 = the height of the CH2 pulse in mV
+        A2 = the area of the CH2 pulse in nVs
+        fitt2 = the fitted start time of the leading edge of the CH2 pulse
+        fitslope2 = the fitted leading slope (mV/ns) for CH2
+        fitNpoints2 = number of samples used in leading edge fit for CH2
+        fitchi2 = chisquared of leading edge fit for CH2
+        fitprob2 = chisquared probability of leading edge fit for CH2
+        halft2 = the time when the CH2 pulse crosses half its max height
+        t3 = the roughly determined time of the CH3 pulse 
+        V3 = the height of the CH3 pulse in mV
+        A3 = the area of the CH3 pulse in nVs
+        fitt3 = the fitted start time of the leading edge of the CH3 pulse
+        fitslope3  = the fitted leading slope (mV/ns) for CH3
+        fitNpoints3 = number of samples used in leading edge fit for CH3
+        fitchi3 = chisquared of leading edge fit for CH3
+        fitprob3 = chisquared probability of leading edge fit for CH3
+        halft3 = the time when the CH3 pulse crosses half its max height
+        t4 = the roughly determined time of the CH4 pulse 
+        V4 = the height of the CH4 pulse in mV
+        A4 = the area of the CH4 pulse in nVs
+        fitt4 = the fitted start time of the leading edge of the CH4 pulse
+        fitslope4  = the fitted leading slope (mV/ns) for CH4
+        fitNpoints4 = number of samples used in leading edge fit for CH4
+        fitchi4 = chisquared of leading edge fit for CH4
+        fitprob4 = chisquared probability of leading edge fit for CH4
+        halft4 = the time when the CH4 pulse crosses half its max height
+        t2-1 = difference between coarse CH2 and CH1 pulse time
+        t4-3 = difference between coarse CH4 and CH3 pulse time
+        t3-1 = difference between coarse CH3 and CH1 pulse time
+        t3-2 = difference between coarse CH3 and CH2 pulse time
+        t4-1 = difference between coarse CH4 and CH1 pulse time
+        t4-2 = difference between coarse CH4 and CH2 pulse time
+        fitt2-1 = difference between fitted CH2 and CH1 pulse time
+        fitt4-3 = difference between fitted CH4 and CH3 pulse time
+        fitt3-1 = difference between fitted CH3 and CH1 pulse time
+        fitt3-2 = difference between fitted CH3 and CH2 pulse time
+        fitt4-1 = difference between fitted CH4 and CH1 pulse time
+        fitt4-2 = difference between fitted CH4 and CH2 pulse time
+        halft2-1 = difference between 50% point CH2 and CH1 pulse time
+        halft4-3 = difference between 50% point CH4 and CH3 pulse time
+        halft3-1 = difference between 50% point CH3 and CH1 pulse time
+        halft3-2 = difference between 50% point CH3 and CH2 pulse time
+        halft4-1 = difference between 50% point CH4 and CH1 pulse time
+        halft4-2 = difference between 50% point CH4 and CH2 pulse time
+      </pre>
+    </div>
+
+    <!-- Area -->
+    <div class="collapsible"><h3>Area</h3></div>
+    <div class="collapsible-content">
+      <pre>
+        run = Run number
+        evttype = Event type code, which can be run dependent
+        evt = Event number
+        A1 = Area of full waveform for CH1 in nVs
+        A2 = Area of full waveform for CH2 in nVs
+        A3 = Area of full waveform for CH3 in nVs
+        A4 = Area of full waveform for CH4 in nVs
+        V1 = Highest voltage seen across the full waveform for CH1 in mV
+        V2 = Highest voltage seen across the full waveform for CH2 in mV
+        V3 = Highest voltage seen across the full waveform for CH3 in mV
+        V4 = Highest voltage seen across the full waveform for CH4 in mV
+        RMS1 = RMS noise measured for CH1 in mV
+        RMS2 = RMS noise measured for CH2 in mV
+        RMS3 = RMS noise measured for CH3 in mV
+        RMS4 = RMS noise measured for CH4 in mV
+      </pre>
+    </div>
+  </section>
+
+  <script>
+    // Collapsible Sections
+    document.addEventListener("DOMContentLoaded", () => {
+      const collapsibles = document.querySelectorAll(".collapsible");
+      
+      collapsibles.forEach((collapsible) => {
+        collapsible.addEventListener("click", function() {
+          this.classList.toggle("active");
+          const content = this.nextElementSibling;
+          if (content.style.display === "block") {
+            content.style.display = "none";
+          } else {
+            content.style.display = "block";
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
+

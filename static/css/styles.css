@@ -10,7 +10,6 @@
 
 /* Common Utilities */
 .container, .login-container, .register-container {
-  display: flex;
   justify-content: center;
 }
 

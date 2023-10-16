@@ -34,6 +34,9 @@ python manage.py create_custom_superuser
 # Add initial team members
 python manage.py add_team_members
 
+# Add initial docs
+python manage.py add_docs
+
 # add initial runs and data_records
 python manage.py add_runs
 python manage.py add_data_records

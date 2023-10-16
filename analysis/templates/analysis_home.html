@@ -14,11 +14,8 @@
         <h1>Analysis</h1>
       </div>
 
-      <p class="mb-4">Below are the core functionalities and guidance on how to use them.</p>
-
-      <!-- Core Functionalities -->
+      <!-- Functionalities -->
       <div class="functionality-section mb-4">
-        <h2>Core Functionalities</h2>
         <ul class="list-group">
           {% for func in functionalities %}
             <li class="list-group-item">
@@ -31,21 +28,6 @@
             </li>
           {% endfor %}
         </ul>
-      </div>
-
-      <!-- How to Use -->
-      <div class="how-to-section mb-4">
-        <h2>How to Use</h2>
-        <div class="list-group">
-          {% for how_to in how_to_use %}
-            <div class="list-group-item">
-              <strong>{{ how_to.title }}:</strong> {{ how_to.description }}
-              {% if how_to.url %}
-                <a href="{% url how_to.url %}">Learn More</a>
-              {% endif %}
-            </div>
-          {% endfor %}
-        </div>
       </div>
 
       <!-- Get Started -->

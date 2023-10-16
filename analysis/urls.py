@@ -27,7 +27,7 @@ from .views import (
 
     # Plot Views
     PlotListView,
-    PlotView,
+    PlotDetailView,
     PlotCreateView,
     PlotEditView,
     PlotDeleteView
@@ -64,7 +64,7 @@ urlpatterns = [
     # Plot-related URLs
     path('plots/', PlotListView.as_view(), name='plot_list'),
     path('plots/create/', PlotCreateView.as_view(), name='plot_create'),
-    path('plots/<int:plot_id>/', PlotView.as_view(), name='plot_view'),
+    path('plots/<int:plot_id>/', PlotDetailView.as_view(), name='plot_detail'),
     path('plots/<int:plot_id>/edit/', PlotEditView.as_view(), name='plot_edit'),
     path('plots/<int:plot_id>/delete/', PlotDeleteView.as_view(), name='plot_delete'),
 ]

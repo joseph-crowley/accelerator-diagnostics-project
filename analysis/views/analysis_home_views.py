@@ -8,23 +8,15 @@ class AnalysisHomeView(View):
     def get(self, request):
         functionalities = [
             {
-                'title': 'Program Management',
-                'description': 'Upload, edit, and manage your data analysis programs.',
+                'title': 'Runs',
+                'description': 'Initiate, monitor, and terminate data acquisition runs.',
                 'links': [
-                    {'url': 'program_list', 'text': 'View Programs'},
-                    {'url': 'program_upload', 'text': 'Upload a Program'},
+                    {'url': 'run_list', 'text': 'View Runs'},
+                    {'url': 'run_create', 'text': 'Start a New Run'},
                 ]
             },
             {
-                'title': 'Workflow Management',
-                'description': 'Create and manage workflows for data analysis.',
-                'links': [
-                    {'url': 'workflow_list', 'text': 'View Workflows'},
-                    {'url': 'workflow_create', 'text': 'Create a Workflow'},
-                ]
-            },
-            {
-                'title': 'Plot Management',
+                'title': 'Plots',
                 'description': 'Create, edit, and view plots for visualizing data.',
                 'links': [
                     {'url': 'plot_list', 'text': 'View Plots'},
@@ -32,43 +24,32 @@ class AnalysisHomeView(View):
                 ]
             },
             {
-                'title': 'Run Management',
-                'description': 'Initiate, monitor, and terminate data acquisition runs with ease.',
+                'title': 'Programs',
+                'description': 'Upload, edit, and manage data analysis programs.',
                 'links': [
-                    {'url': 'run_list', 'text': 'View Runs'},
-                    {'url': 'run_create', 'text': 'Start a New Run'},
+                    {'url': 'program_list', 'text': 'View Programs'},
+                    {'url': 'program_upload', 'text': 'Upload a Program'},
+                ]
+            },
+            {
+                'title': 'Workflows',
+                'description': 'Create and manage workflows for data analysis.',
+                'links': [
+                    {'url': 'workflow_list', 'text': 'View Workflows'},
+                    {'url': 'workflow_create', 'text': 'Create a Workflow'},
                 ]
             },
             {
                 'title': 'Data Analysis',
-                'description': 'Apply filters, anomaly detection, and custom scripts to your data.',
+                'description': 'Apply filters, anomaly detection, and custom scripts to data.',
                 'links': [
                     {'url': 'data_record_list', 'text': 'View Data Records'},
                 ]
             }
         ]
 
-        how_to_use = [
-            {
-                'title': 'Run Management',
-                'description': 'Navigate to Run Management to start a new data acquisition run. Once a run is active, you can monitor it in real-time and make necessary adjustments.',
-                'url': 'run_list'
-            },
-            {
-                'title': 'Data Analysis',
-                'description': 'Use the Data Analysis tools to deep-dive into your data. You can apply pre-defined or custom filters to get the insights you need.',
-                'url': 'data_record_list'
-            },
-            {
-                'title': 'Visualization',
-                'description': 'The Visualization tools allow you to see your data in various formats. Interact with the data to gain deeper insights.',
-                'url': None  # Add link if there's a URL pattern for visualization
-            }
-        ]
-
         context = {
             'functionalities': functionalities,
-            'how_to_use': how_to_use
         }
 
         return render(request, 'analysis_home.html', context)

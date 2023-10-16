@@ -1,64 +1,102 @@
-from django.views import View
-from django.urls import reverse
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 from analysis.forms import PlotForm
 from analysis.models import Plot
 
-# View to create a new plot
-@method_decorator(login_required, name='dispatch')
-class PlotCreateView(View):
-    def get(self, request):
-        form = PlotForm()
-        return render(request, 'plot_form.html', {'form': form})
+from django.forms import modelformset_factory
+from analysis.forms import PlotForm, RunDataFormSet, CutFormSet  # Assuming you have these forms defined.
 
-    def post(self, request):
-        form = PlotForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(reverse('analysis_home'))  # Redirect to a relevant page
-        return render(request, 'plot_form.html', {'form': form})
+class PlotCreateView(LoginRequiredMixin, CreateView):
+    model = Plot
+    form_class = PlotForm
+    template_name = 'plot_form.html'
+    success_url = reverse_lazy('analysis_home')
 
-# View to edit a plot
-@method_decorator(login_required, name='dispatch')
-class PlotEditView(View):
-    def get(self, request, plot_id):
-        plot = get_object_or_404(Plot, pk=plot_id)
-        form = PlotForm(instance=plot)
-        return render(request, 'plot_form.html', {'form': form})
-
-    def post(self, request, plot_id):
-        plot = get_object_or_404(Plot, pk=plot_id)
-        form = PlotForm(request.POST, instance=plot)
-        if form.is_valid():
-            form.save()
-            return redirect(reverse('analysis_home'))
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         
-        return render(request, 'plot_form.html', {'form': form})
+        if self.request.POST:
+            context['run_data_formset'] = RunDataFormSet(self.request.POST, prefix='rundata')
+            context['cut_formset'] = CutFormSet(self.request.POST, prefix='cut')
+        else:
+            context['run_data_formset'] = RunDataFormSet(prefix='rundata')
+            context['cut_formset'] = CutFormSet(prefix='cut')
 
-# View to delete a plot
-@method_decorator(login_required, name='dispatch')
-class PlotDeleteView(View):
-    def get(self, request, plot_id):
-        plot = get_object_or_404(Plot, pk=plot_id)
-        return render(request, 'plot_confirm_delete.html', {'plot': plot})
+        return context
 
-    def post(self, request, plot_id):
-        plot = get_object_or_404(Plot, pk=plot_id)
-        plot.delete()
-        return redirect(reverse('analysis_home'))
-    
-# View to list all plots
-@method_decorator(login_required, name='dispatch')
-class PlotListView(View):
-    def get(self, request):
-        plots = Plot.objects.all()
-        return render(request, 'plot_list.html', {'plots': plots})
-    
-# View to view a plot
-@method_decorator(login_required, name='dispatch')
-class PlotView(View):
-    def get(self, request, plot_id):
-        plot = get_object_or_404(Plot, pk=plot_id)
-        return render(request, 'plot_detail.html', {'plot': plot})
+    def form_valid(self, form):
+        context = self.get_context_data()
+        run_data_formset = context['run_data_formset']
+        cut_formset = context['cut_formset']
+
+        if run_data_formset.is_valid() and cut_formset.is_valid():
+            # First save this main form instance to get the id
+            self.object = form.save()
+            
+            # Then use that instance to save the related formsets
+            run_data_formset.instance = self.object
+            cut_formset.instance = self.object
+            
+            run_data_formset.save()
+            cut_formset.save()
+
+            return super().form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+class PlotEditView(LoginRequiredMixin, UpdateView):
+    model = Plot
+    form_class = PlotForm
+    pk_url_kwarg = 'plot_id'
+    template_name = 'plot_form.html'
+    success_url = reverse_lazy('analysis_home')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        if self.request.POST:
+            context['run_data_formset'] = RunDataFormSet(self.request.POST, prefix='rundata', instance=self.object)
+            context['cut_formset'] = CutFormSet(self.request.POST, prefix='cut', instance=self.object)
+        else:
+            context['run_data_formset'] = RunDataFormSet(prefix='rundata', instance=self.object)
+            context['cut_formset'] = CutFormSet(prefix='cut', instance=self.object)
+
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        run_data_formset = context['run_data_formset']
+        cut_formset = context['cut_formset']
+
+        if run_data_formset.is_valid() and cut_formset.is_valid():
+            # First save this main form instance to get the id
+            self.object = form.save()
+            
+            # Then use that instance to save the related formsets
+            run_data_formset.instance = self.object
+            cut_formset.instance = self.object
+            
+            run_data_formset.save()
+            cut_formset.save()
+
+            return super().form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+class PlotDeleteView(LoginRequiredMixin, DeleteView):
+    model = Plot
+    pk_url_kwarg = 'plot_id'
+    template_name = 'plot_confirm_delete.html'
+    success_url = reverse_lazy('analysis_home')
+
+class PlotListView(LoginRequiredMixin, ListView):
+    model = Plot
+    template_name = 'plot_list.html'
+    context_object_name = 'plots'
+
+class PlotDetailView(LoginRequiredMixin, DetailView):
+    model = Plot
+    template_name = 'plot_detail.html'
+    pk_url_kwarg = 'plot_id'
+    context_object_name = 'plot'
