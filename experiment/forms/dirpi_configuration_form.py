@@ -1,5 +1,5 @@
 from django import forms
-from analysis.models import DiRPiConfiguration
+from experiment.models import DiRPiConfiguration
 
 class DiRPiConfigurationForm(forms.ModelForm):
     
@@ -47,3 +47,9 @@ class DiRPiConfigurationForm(forms.ModelForm):
         # Example: Limiting DAC values based on the provided config:
         #self.fields['dac_value_channel1'].widget.attrs.update({'min': 0, 'max': 400})
         #self.fields['dac_value_channel2'].widget.attrs.update({'min': 0, 'max': 400})
+
+    def clean_memory_depth(self):
+        memory_depth = self.cleaned_data.get('memory_depth')
+        if memory_depth < 1 or memory_depth > 1000:
+            raise forms.ValidationError('Memory depth must be between 1 and 1000.')
+        return memory_depth

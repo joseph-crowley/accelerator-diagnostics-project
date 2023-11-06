@@ -26,4 +26,5 @@ urlpatterns = [
     #path('example/', include('example.urls')),
     path('docs/', include('docs.urls')),
     path('analysis/', include('analysis.urls')),
+    path('experiment/', include('experiment.urls')),
 ]

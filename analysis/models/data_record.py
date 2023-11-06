@@ -1,7 +1,7 @@
 from django.db import models
 
 class DataRecord(models.Model):
-    run = models.ForeignKey('Run', on_delete=models.CASCADE)
+    run = models.ForeignKey('analysis.Run', on_delete=models.CASCADE)
     timestamp = models.DateTimeField()
     data_values = models.JSONField()
     anomalies = models.JSONField()

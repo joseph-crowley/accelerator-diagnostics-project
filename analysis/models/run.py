@@ -9,7 +9,7 @@ class Run(models.Model):
     )
     run_id = models.AutoField(primary_key=True)
     notes = models.TextField()
-    configuration = models.ForeignKey('analysis.DiRPiConfiguration', on_delete=models.SET_NULL, null=True)
+    configuration = models.ForeignKey('experiment.DiRPiConfiguration', on_delete=models.SET_NULL, null=True)
     #associated_group = models.ForeignKey('Control.DiRPiGroup', on_delete=models.CASCADE, null=True)
     status = models.CharField(choices=STATUS_CHOICES, max_length=10)
     

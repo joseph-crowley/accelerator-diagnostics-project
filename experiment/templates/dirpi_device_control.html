@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}DiRPi Device Control{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1>Control Interface for Device: {{ device.device_id }}</h1>
+{% if messages %}
+<div class="alert alert-info">
+  {% for message in messages %}
+  <p>{{ message }}</p>
+  {% endfor %}
+</div>
+{% endif %}
+
+    <hr>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Update Configuration</button>
+    </form>
+    <hr>
+    <button class="btn btn-success">Send Configuration</button>
+  </div>
+{% endblock %}

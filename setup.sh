@@ -22,6 +22,7 @@ find . -type d -name "__pycache__" -exec rm -r {} +
 python manage.py makemigrations core
 python manage.py makemigrations docs 
 python manage.py makemigrations analysis 
+python manage.py makemigrations experiment
 
 python manage.py migrate
 
@@ -40,6 +41,10 @@ python manage.py add_docs
 # add initial runs and data_records
 python manage.py add_runs
 python manage.py add_data_records
+
+# add initial experiment groups and devices
+python manage.py add_dirpi_groups
+python manage.py add_dirpi_devices
 
 # run the server
 python manage.py runserver 0.0.0.0:8005

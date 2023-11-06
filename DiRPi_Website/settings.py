@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'core',
     'docs',
     'analysis',
+    'experiment',
 ]
 
 MIDDLEWARE = [

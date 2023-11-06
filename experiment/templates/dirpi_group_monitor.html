@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}DiRPi Group Monitor{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1>Monitoring Group: {{ group.group_name }}</h1>
+    <hr>
+    <div class="row">
+      <!-- Loop through all DiRPi Devices in the group and display -->
+      {% for device in group.devices.all %}
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <div class="card-header">
+              {{ device.device_id }}
+            </div>
+            <div class="card-body">
+              <p class="card-text">Status: {{ device.status }}</p>
+              <p class="card-text">Last Ping: {{ device.last_ping_time }}</p>
+              <a href="{% url 'dirpi_device_control' device.pk %}" class="btn btn-primary">Control</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

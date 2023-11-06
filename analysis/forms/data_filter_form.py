@@ -1,5 +1,6 @@
 from django import forms
-from analysis.models import Run, DiRPiConfiguration
+from analysis.models import Run
+from experiment.models import DiRPiConfiguration
 
 class DataFilterForm(forms.Form):
     start_date = forms.DateTimeField(required=False)

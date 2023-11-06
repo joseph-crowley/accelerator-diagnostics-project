@@ -1,7 +1,7 @@
 from django.db import models
 
 class MultiChannelData(models.Model):
-    record = models.ForeignKey('DataRecord', on_delete=models.CASCADE)
+    record = models.ForeignKey('analysis.DataRecord', on_delete=models.CASCADE)
     channel_id = models.IntegerField()
     data_values = models.JSONField()
 

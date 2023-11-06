@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}DiRPi Group List{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1>DiRPi Groups</h1>
+    <hr>
+    <div class="row">
+      <!-- Loop through all DiRPi Groups and display -->
+      {% for group in groups %}
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <div class="card-header">
+              {{ group.group_name }}
+            </div>
+            <div class="card-body">
+              <p class="card-text">Location: {{ group.location }}</p>
+              <p class="card-text">Health Status: {{ group.health_status }}</p>
+              <a href="{% url 'dirpi_group_monitor' group.id %}" class="btn btn-primary">Monitor</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

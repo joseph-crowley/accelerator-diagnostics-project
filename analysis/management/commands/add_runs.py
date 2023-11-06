@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
-from analysis.models import Run, DiRPiConfiguration
+from analysis.models import Run
+from experiment.models import DiRPiConfiguration
 
 class Command(BaseCommand):
     help = 'Populate database with sample Run objects'
