@@ -49,16 +49,18 @@
                 <thead>
                     <tr>
                         <th scope="col">Timestamp</th>
-                        <th scope="col">Data Values</th>
+                        <th scope="col">Tier</th>
                         <th scope="col">Anomalies</th>
+                        <th scope="col">Data Values</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for record in data_records %}
                     <tr>
                         <td>{{ record.timestamp }}</td>
-                        <td>{{ record.data_values }}</td>
+                        <td>{{ record.data_tier }}</td>
                         <td>{{ record.anomalies|default:"None" }}</td>
+                        <td><a href="{% url 'data_record_detail' record.pk %}">View</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -16,6 +16,7 @@ class Command(BaseCommand):
             DataRecord.objects.create(
                 run_id=i,
                 timestamp=timestamp_str,
+                data_tier="RAW",
                 data_values=[
                     {"temperature": random.randint(20, 30), "humidity": random.randint(40, 60)},
                     {"temperature": random.randint(20, 30), "humidity": random.randint(40, 60)}

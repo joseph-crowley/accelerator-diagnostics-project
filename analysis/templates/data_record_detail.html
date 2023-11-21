@@ -11,16 +11,43 @@
         <h2 class="text-center mb-5">Data Record Details</h2>
         <dl class="row">
             <dt class="col-sm-3">Timestamp:</dt>
-            <dd class="col-sm-9">{{ record.timestamp }}</dd>
+            <dd class="col-sm-9">{{ data_record.timestamp }}</dd>
 
-            <dt class="col-sm-3">Data Values:</dt>
-            <dd class="col-sm-9">{{ record.data_values }}</dd>
+            <dt class="col-sm-3">Tier:</dt>
+            <dd class="col-sm-9">{{ data_record.data_tier }}</dd>
 
             <dt class="col-sm-3">Anomalies:</dt>
-            <dd class="col-sm-9">{{ record.anomalies|default:"None" }}</dd>
-            
+            <dd class="col-sm-9">{{ data_record.anomalies|default:"None" }}</dd>
+
             <!-- Add more fields here -->
         </dl>
+        <dt class="col-sm-3">Data Table:</dt>
+        <hr>
+        <dd class="col-sm-9">
+            {% if data_record.data_values %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            {% for key in data_record.data_values.0.keys %}
+                                <th scope="col">{{ key }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in data_record.data_values %}
+                            <tr>
+                                {% for key, value in record.items %}
+                                    <td>{{ value }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No data values available</p>
+            {% endif %}
+        </dd>
+
     </div>
 </section>
 {% endblock %}

@@ -11,6 +11,7 @@ from .views import (
 
     # DataRecord Views
     DataRecordListView,
+    DataRecordDetailView,
 
     # Program Views
     ProgramListView,
@@ -46,6 +47,7 @@ urlpatterns = [
 
     # DataRecord-related URLs
     path('data_records/', DataRecordListView.as_view(), name='data_record_list'),
+    path('data_records/<pk>/', DataRecordDetailView.as_view(), name='data_record_detail'),
 
     # Program-related URLs
     path('programs/', ProgramListView.as_view(), name='program_list'),
